@@ -1,6 +1,6 @@
 FROM node:21 as NODE_BUILD
-WORKDIR /go/src/github.com/juzi/siyuan-juzi/
-ADD . /go/src/github.com/juzi/siyuan-juzi/
+WORKDIR /go/src/github.com/juzi0331/siyuan-juzi/
+ADD . /go/src/github.com/juzi0331/siyuan-juzi/
 RUN apt-get update && \
     apt-get install -y jq
 RUN cd app && \
@@ -18,19 +18,19 @@ RUN apt-get autoremove -y
 RUN rm -rf /var/lib/apt/lists/*
 
 FROM golang:alpine as GO_BUILD
-WORKDIR /go/src/github.com/juzi/siyuan-juzi/
-COPY --from=NODE_BUILD /go/src/github.com/juzi/siyuan-juzi/ /go/src/github.com/juzi/siyuan-juzi/
+WORKDIR /go/src/github.com/juzi0331/siyuan-juzi/
+COPY --from=NODE_BUILD /go/src/github.com/juzi0331/siyuan-juzi/ /go/src/github.com/juzi0331/siyuan-juzi/
 ENV GO111MODULE=on
 ENV CGO_ENABLED=1
 ENV CGO_CFLAGS="-D_LARGEFILE64_SOURCE"
 RUN apk add --no-cache gcc musl-dev && \
     cd kernel && go build --tags fts5 -v -ldflags "-s -w" && \
     mkdir /opt/siyuan/ && \
-    mv /go/src/github.com/juzi/siyuan-juzi/app/appearance/ /opt/siyuan/ && \
-    mv /go/src/github.com/juzi/siyuan-juzi/app/stage/ /opt/siyuan/ && \
-    mv /go/src/github.com/juzi/siyuan-juzi/app/guide/ /opt/siyuan/ && \
-    mv /go/src/github.com/juzi/siyuan-juzi/app/changelogs/ /opt/siyuan/ && \
-    mv /go/src/github.com/juzi/siyuan-juzi/kernel/kernel /opt/siyuan/ && \
+    mv /go/src/github.com/juzi0331/siyuan-juzi/app/appearance/ /opt/siyuan/ && \
+    mv /go/src/github.com/juzi0331/siyuan-juzi/app/stage/ /opt/siyuan/ && \
+    mv /go/src/github.com/juzi0331/siyuan-juzi/app/guide/ /opt/siyuan/ && \
+    mv /go/src/github.com/juzi0331/siyuan-juzi/app/changelogs/ /opt/siyuan/ && \
+    mv /go/src/github.com/juzi0331/siyuan-juzi/kernel/kernel /opt/siyuan/ && \
     find /opt/siyuan/ -name .git | xargs rm -rf
 
 FROM alpine:latest
