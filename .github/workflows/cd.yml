@@ -1,4 +1,4 @@
-name: CD For SiYuan Unlock
+name: CD For SiYuan juzi
 
 on:
   workflow_dispatch:
