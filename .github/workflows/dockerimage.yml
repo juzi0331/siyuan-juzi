@@ -11,11 +11,11 @@ on:
 # ref https://docs.github.com/zh/actions/learn-github-actions/variables
 env:
   repo_name_android: "siyuan-android"
-  repo_name: "siyuan-unlock"
-  repo_owner: "appdev"
+  repo_name: "siyuan-juzi"
+  repo_owner: "juzi0331"
   package_json: "app/package.json"
-  docker_hub_owner: "apkdv"
-  docker_hub_repo: "siyuan-unlock"
+  docker_hub_owner: "xiaofan0331"
+  docker_hub_repo: "siyuan-juzi"
 
 jobs:
   build:
