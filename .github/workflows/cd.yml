@@ -5,8 +5,8 @@ on:
 
 env:
   repo_name_android: "siyuan-android"
-  repo_name: "siyuan-unlock"
-  repo_owner: "appdev"
+  repo_name: "siyuan-juzi"
+  repo_owner: "xiaofan0331"
   package_json: "app/package.json"
 
 jobs:
